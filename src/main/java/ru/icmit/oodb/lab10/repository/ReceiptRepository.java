@@ -32,6 +32,13 @@ public class ReceiptRepository {
         return (Receipt) receipts.get(0);
     }
 
+    public List<Receipt> findByApartmentId(long id) {
+        Query query = entityManager.createQuery(
+                "select c from Receipt c where c.apartment.id = :id", Receipt.class);
+        query.setParameter("id", id);
+        return (List<Receipt>) query.getResultList();
+    }
+
     @Transactional
     public Receipt save(Receipt receipt) {
         entityManager.persist(receipt);

@@ -31,6 +31,13 @@ public class ApartmentRepository {
         return (Apartment) apartments.get(0);
     }
 
+    public List<Apartment> findByHouseId(long id) {
+        Query query = entityManager.createQuery(
+                "select c from Apartment c where c.house.id = :id", Apartment.class);
+        query.setParameter("id", id);
+        return (List<Apartment>) query.getResultList();
+    }
+
     @Transactional
     public Apartment save(Apartment apartment) {
         entityManager.persist(apartment);

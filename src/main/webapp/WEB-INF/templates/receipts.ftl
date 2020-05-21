@@ -40,6 +40,9 @@
         <div class="line__item">
             <button name="action" type="submit" value="save" class="btn btn-save">Добавить</button>
         </div>
+        <div class="line__item">
+            <button name="action" type="submit" value="search" class="btn btn-search">Поиск по квартире</button>
+        </div>
     </form>
     <#if model["receipts"]??>
         <#list model["receipts"] as r>

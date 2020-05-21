@@ -56,12 +56,17 @@ public class ApartmentController {
     public String serviceAction(HttpServletRequest request,
                                 @RequestParam("house") long id,
                                 @RequestParam("number") Integer number,
+                                @RequestParam("action") String action,
                                 @ModelAttribute("model") ModelMap model) {
-        apartmentRepository.save(new Apartment(houseRepository.findById(id), number));
+        if (action.equals("save")) {
+            apartmentRepository.save(new Apartment(houseRepository.findById(id), number));
+            model.addAttribute("apartments", apartmentRepository.findAll());
+        } else {
+            model.addAttribute("apartments", apartmentRepository.findByHouseId(id));
+        }
         String path = request.getContextPath();
         model.addAttribute("app_path", path);
         model.addAttribute("houses", houseRepository.findAll());
-        model.addAttribute("apartments", apartmentRepository.findAll());
         return "/apartments";
     }
 }

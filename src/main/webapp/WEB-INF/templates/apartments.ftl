@@ -33,6 +33,9 @@
         <div class="line__item">
             <button name="action" type="submit" value="save" class="btn btn-save">Добавить</button>
         </div>
+        <div class="line__item">
+            <button name="action" type="submit" value="search" class="btn btn-search">Поиск по адресу</button>
+        </div>
     </form>
     <#if model["apartments"]??>
         <#list model["apartments"] as apartment>

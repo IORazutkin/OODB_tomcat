@@ -3,7 +3,7 @@ form.line {
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     column-gap: 10px;
 }
-button.btn-save, button.btn-delete {
+button.btn-save, button.btn-delete, button.btn-search {
     background: #4CAF50;
     text-transform: uppercase;
     color: white;
@@ -12,6 +12,9 @@ button.btn-save, button.btn-delete {
 }
 button.btn-delete {
     background: crimson;
+}
+button.btn-search {
+    background: #3c77bf;
 }
 .line input, .line select {
     width: 100%;

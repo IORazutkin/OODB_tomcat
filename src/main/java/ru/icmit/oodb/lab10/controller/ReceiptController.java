@@ -65,13 +65,18 @@ public class ReceiptController {
                                 @RequestParam("apartment") long apartment_id,
                                 @RequestParam("service") long service_id,
                                 @RequestParam("value") Double value,
+                                @RequestParam("action") String action,
                                 @ModelAttribute("model") ModelMap model) {
-        receiptRepository.save(new Receipt(serviceRepository.findById(service_id), value, apartmentRepository.findById(apartment_id)));
+        if (action.equals("save")) {
+            receiptRepository.save(new Receipt(serviceRepository.findById(service_id), value, apartmentRepository.findById(apartment_id)));
+            model.addAttribute("receipts", receiptRepository.findAll());
+        } else {
+            model.addAttribute("receipts", receiptRepository.findByApartmentId(apartment_id));
+        }
         String path = request.getContextPath();
         model.addAttribute("app_path", path);
         model.addAttribute("services", serviceRepository.findAll());
         model.addAttribute("apartments", apartmentRepository.findAll());
-        model.addAttribute("receipts", receiptRepository.findAll());
         return "/receipts";
     }
 }
